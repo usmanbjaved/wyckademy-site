@@ -1,214 +1,291 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wyckademy</title>
-<meta name="description" content="Wyckademy: institutional market structure education. Learn to read smart money with the Wyckoff method. Launching soon.">
-<meta property="og:title" content="Wyckademy · Launching soon">
-<meta property="og:description" content="Institutional market structure education. Read smart money with the Wyckoff method.">
+<title>Wyckademy: read smart money with the Wyckoff method</title>
+<meta name="description" content="Wyckademy teaches the Wyckoff method on real US stocks: a daily scan, the chart, the plan written before the trade, and an honest scorecard. Education only, not investment advice.">
+<meta property="og:title" content="Wyckademy: read smart money with the Wyckoff method">
+<meta property="og:description" content="Wyckademy teaches the Wyckoff method on real US stocks: a daily scan, the chart, the plan written before the trade, and an honest scorecard. Education only, not investment advice.">
+<meta property="og:image" content="https://wyckademy.com/assets/hal_thumb.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <style>
-/* One visual world (the Wyckademy brand): navy field, gold accent, cream type.
-   Layout: brand + message on the left, a blueprint of the accumulation schematic on the right,
-   drawn up to Phase B ("building the cause") with the rest still dashed, i.e. under construction. */
-:root{
-  --navy:#13233F; --navy-2:#1B2E50; --gold:#C29B4E; --gold-lt:#E6D3A8; --cream:#F5F0E6; --mist:#AEB8CB;
-  --display:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --body:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  color-scheme:dark;
-}
-*{box-sizing:border-box}
-html,body{margin:0}
-body{background:var(--navy);color:var(--cream);font:16px/1.6 var(--body);
-  background-image:radial-gradient(1200px 700px at 78% 30%, #22375f 0%, transparent 60%)}
-a{color:var(--gold-lt)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
-
-/* top bar */
-.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0;border-bottom:1px solid rgba(245,240,230,.14)}
-.mark{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--cream)}
-.mark span{font:700 22px/1 var(--display);letter-spacing:.14em}
-.chip{font:600 12px/1 var(--body);letter-spacing:.18em;color:var(--navy);background:var(--gold);padding:8px 12px;white-space:nowrap}
-
-/* hero */
-.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center;padding:clamp(36px,7vw,84px) 0 clamp(28px,5vw,56px)}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;font:600 12px/1 var(--body);letter-spacing:.24em;color:var(--gold)}
-.eyebrow i{width:9px;height:9px;background:var(--gold);display:inline-block;animation:blink 1.6s steps(2,start) infinite}
-.lockup{display:flex;align-items:center;gap:clamp(16px,2.6vw,28px);margin:22px 0 20px;min-width:0}
-.lockup>div{min-width:0}
-.lockup svg{width:clamp(84px,11vw,124px);height:auto;flex:none}
-h1{margin:0;font:600 clamp(32px,4.3vw,58px)/.95 var(--display);letter-spacing:.07em;white-space:nowrap}
-.tagline{margin:10px 0 0;font:italic 500 clamp(19px,2.2vw,26px)/1.25 var(--display);color:var(--gold-lt)}
-.purpose{margin:26px 0 0;font:600 clamp(26px,3.2vw,38px)/1.12 var(--display);text-wrap:balance;max-width:20ch}
-.lede{margin:14px 0 0;max-width:56ch;color:var(--mist);font-size:17px}
-
-/* progress */
-.build{margin-top:30px;max-width:520px}
-.build-head{display:flex;justify-content:space-between;gap:12px;font:600 12px/1 var(--body);letter-spacing:.18em;color:var(--gold-lt)}
-.track{position:relative;height:10px;margin:12px 0 8px;background:rgba(245,240,230,.12)}
-.fill{position:absolute;inset:0 auto 0 0;width:40%;background:repeating-linear-gradient(-45deg,var(--gold) 0 10px,#d8b770 10px 20px);background-size:28px 28px;animation:stripes 1.2s linear infinite}
-.ticks{display:grid;grid-template-columns:repeat(5,1fr);font:600 11px/1 var(--body);letter-spacing:.14em;color:var(--mist)}
-.ticks span{border-left:1px solid rgba(245,240,230,.25);padding:6px 0 0 6px}
-.ticks .on{color:var(--gold)}
-
-/* blueprint panel */
-.panel{position:relative;background:var(--navy-2);border:1px solid rgba(245,240,230,.16);padding:18px 18px 14px;
-  background-image:linear-gradient(rgba(245,240,230,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(245,240,230,.05) 1px,transparent 1px);
-  background-size:24px 24px}
-.tape{position:absolute;left:0;right:0;top:-1px;height:12px;background:repeating-linear-gradient(-45deg,var(--gold) 0 14px,var(--navy) 14px 28px)}
-.panel-head{display:flex;justify-content:space-between;gap:12px;margin:10px 0 6px;font:600 11px/1.4 var(--body);letter-spacing:.18em;color:var(--mist)}
-.panel svg{display:block;width:100%;height:auto}
-.panel figcaption{margin-top:8px;font:italic 500 17px/1.35 var(--display);color:var(--gold-lt)}
-.todo{stroke-dasharray:6 9;animation:march 1.4s linear infinite}
-.here{animation:pulse 1.8s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
-
-/* coming */
-.coming{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding:12px 0 56px}
-.coming article{border-top:2px solid var(--gold);padding-top:14px}
-.coming small{font:600 11px/1 var(--body);letter-spacing:.2em;color:var(--gold)}
-.coming h2{margin:8px 0 6px;font:600 26px/1.1 var(--display)}
-.coming p{margin:0;color:var(--mist);font-size:15px;max-width:40ch}
-
-footer{border-top:1px solid rgba(245,240,230,.14);padding:22px 0 34px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font-size:13px;color:var(--mist)}
-footer p{margin:0;max-width:70ch}
-
-@keyframes march{to{stroke-dashoffset:-30}}
-@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.6}}
-@keyframes stripes{to{background-position:28px 0}}
-@keyframes blink{to{visibility:hidden}}
-@media (prefers-reduced-motion:reduce){
-  .todo,.here,.fill,.eyebrow i{animation:none}
-}
-@media (max-width:860px){.hero{grid-template-columns:1fr}.coming{grid-template-columns:1fr}}
-@media (max-width:560px){.lockup{flex-direction:column;align-items:flex-start}}
-@media (max-width:420px){.chip{display:none}}
+body{margin:0;font-family:Inter,Arial,sans-serif;color:#0E1B2C;background:#F5F7FA}
+a{color:#0E1B2C}a:hover{color:#2457C5}
 </style>
+<style>*{box-sizing:border-box}img{max-width:100%}</style>
 </head>
 <body>
-<div class="wrap">
-  <header class="bar">
-    <a class="mark" href="/" aria-label="Wyckademy home">
-      <svg width="30" height="36" viewBox="0 0 200 240" aria-hidden="true"><use href="#crest"></use></svg>
-      <span>WYCKADEMY</span>
-    </a>
-    <div class="chip">LAUNCHING SOON</div>
-  </header>
+<div style="width: 100%; background: #F5F7FA">
 
-  <main>
-    <section class="hero">
-      <div>
-        <div class="eyebrow"><i></i>SITE UNDER CONSTRUCTION</div>
-        <div class="lockup">
-          <svg viewBox="0 0 200 240" role="img" aria-label="Wyckademy crest"><use href="#crest"></use></svg>
-          <div>
-            <h1>WYCKADEMY</h1>
-            <p class="tagline">Institutional market structure education</p>
-          </div>
-        </div>
-        <p class="purpose">Read smart money with the Wyckoff method.</p>
-        <p class="lede">Clear Wyckoff schematics, volume analysis and real stock case studies for retail traders who have outgrown indicators. Every lesson rule-based, every trade reviewed, win or lose.</p>
+<header style="background: #0E1B2C; border-bottom: 1px solid #1F3048">
+<nav aria-label="Main" style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 20px">
+<a href="/" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #FFFFFF">
+<svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="6" fill="#C9A24D"></rect><rect x="6" y="13" width="3" height="9" rx="1" fill="#0E1B2C"></rect><rect x="12.5" y="9" width="3" height="13" rx="1" fill="#0E1B2C"></rect><rect x="19" y="5" width="3" height="17" rx="1" fill="#0E1B2C"></rect></svg>
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: .14em; font-size: 17px">WYCKADEMY</span>
+</a>
+<div style="display: flex; flex-wrap: wrap; gap: 26px; flex-grow: 1; justify-content: center; font-size: 15px">
+<a href="/" style="text-decoration: none; color: #FFFFFF; font-weight: 600; border-bottom: 2px solid #C9A24D; padding-bottom: 4px">Today</a>
+<a href="/basics/" style="text-decoration: none; color: #C3CEDB">Wyckoff Basics</a>
+<a href="/trades/" style="text-decoration: none; color: #C3CEDB">Historical Trades</a>
+<a href="#scorecard" style="text-decoration: none; color: #C3CEDB">Scorecard</a>
+</div>
+<a href="#signup" style="background: #C9A24D; color: #0E1B2C; text-decoration: none; padding: 12px 18px; border-radius: 8px; font-size: 14px; font-weight: 700">Get the daily trade</a>
+</nav>
+</header>
 
-        <div class="build" aria-label="Build progress: Phase B of five">
-          <div class="build-head"><span>BUILDING THE CAUSE</span><span>PHASE B OF E</span></div>
-          <div class="track"><div class="fill"></div></div>
-          <div class="ticks"><span class="on">A</span><span class="on">B</span><span>C</span><span>D</span><span>E</span></div>
-        </div>
-      </div>
+<section aria-labelledby="hero" style="background: #0E1B2C; color: #FFFFFF">
+<div style="max-width: 1200px; margin: 0 auto; padding: 44px 24px 56px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .12em; color: #C9A24D; border: 1px solid #3A4E68; border-radius: 20px; padding: 6px 12px">TRADE OF THE DAY</span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #9FB0C4">Scan of Fri 13 Nov 2026 · after the US close · S&amp;P 500 · strict springs only</span>
+</div>
+<h1 id="hero" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 52px; line-height: 1.05; font-weight: 700; max-width: 900px; letter-spacing: -.01em">Halliburton just printed a textbook Wyckoff spring.</h1>
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch">
+<figure style="flex: 999 1 600px; min-width: 0; margin: 0; background: #0B1726; border: 1px solid #22344C; border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 13px">
+<span><b style="color: #FFFFFF; font-size: 15px">HAL</b> <span style="color: #9FB0C4">· Halliburton Company · daily</span></span>
+<span style="color: #9FB0C4">close <b style="color: #FFFFFF">33.78</b> · range 31.26–38.06</span>
+</div>
+<img src="/assets/hal_chart.png" alt="HAL daily chart: 25% mark-down, selling climax on 21 July, a 78-day trading range between 31.26 and 38.06, and a spring below support on 9 November" style="width: 100%; height: auto; border-radius: 8px; display: block">
+<figcaption style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; color: #9FB0C4">
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 3px; background: #7FB2F0; display: inline-block"></span>Anchored VWAP from the climax</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 0; border-top: 2px dashed #E2B85C; display: inline-block"></span>Trading range</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 0; border-top: 2px dotted #E0605A; display: inline-block"></span>Stop</span>
+</figcaption>
+</figure>
 
-      <figure class="panel" style="margin:0">
-        <div class="tape" aria-hidden="true"></div>
-        <div class="panel-head"><span>BLUEPRINT · ACCUMULATION</span><span>WYCKADEMY.COM</span></div>
-        <svg viewBox="0 0 800 460" role="img" aria-label="Accumulation schematic drawn through Phase B; Phases C to E still dashed, marked as under construction">
-          <rect x="230" y="40" width="210" height="330" fill="#C29B4E" opacity=".10"></rect>
-          <g font-family="Inter, sans-serif" font-size="13" font-weight="600" letter-spacing="2" fill="#AEB8CB" text-anchor="middle">
-            <text x="125" y="30">PHASE A</text><text x="335" y="30" fill="#C29B4E">PHASE B</text>
-            <text x="500" y="30">C</text><text x="630" y="30">D</text><text x="745" y="30">E</text>
-          </g>
-          <g stroke="#F5F0E6" stroke-opacity=".35" stroke-dasharray="5 6">
-            <line x1="20" y1="150" x2="790" y2="150"></line><line x1="20" y1="250" x2="790" y2="250"></line>
-          </g>
-          <polyline points="20,60 70,130 90,110 130,260 180,150 230,240 280,180 330,225 380,170 410,205"
-            fill="none" stroke="#F5F0E6" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"></polyline>
-          <polyline class="todo" points="410,205 430,225 470,285 510,210 540,245 600,130 640,165 700,100 780,50"
-            fill="none" stroke="#C29B4E" stroke-width="3" stroke-linejoin="round" opacity=".8"></polyline>
-          <g font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#F5F0E6">
-            <text x="58" y="150">PS</text><text x="130" y="283" text-anchor="middle">SC</text>
-            <text x="180" y="138" text-anchor="middle">AR</text><text x="230" y="263" text-anchor="middle">ST</text>
-          </g>
-          <g font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#C29B4E" opacity=".75">
-            <text x="470" y="310" text-anchor="middle">SPRING</text><text x="600" y="118" text-anchor="middle">SOS</text>
-            <text x="640" y="188" text-anchor="middle">LPS</text>
-          </g>
-          <circle class="here" cx="410" cy="205" r="9" fill="#C29B4E" stroke="#13233F" stroke-width="3"></circle>
-          <g transform="translate(410 205)">
-            <line x1="0" y1="-14" x2="0" y2="-62" stroke="#C29B4E" stroke-width="2"></line>
-            <rect x="-62" y="-92" width="124" height="30" fill="#C29B4E"></rect>
-            <text x="0" y="-72" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="#13233F">YOU ARE HERE</text>
-          </g>
-          <g fill="#F5F0E6" opacity=".45">
-            <rect x="20" y="420" width="18" height="20"></rect><rect x="56" y="410" width="18" height="30"></rect><rect x="94" y="400" width="18" height="40"></rect>
-            <rect x="132" y="362" width="18" height="78"></rect><rect x="170" y="396" width="18" height="44"></rect><rect x="208" y="404" width="18" height="36"></rect>
-            <rect x="246" y="412" width="18" height="28"></rect><rect x="284" y="416" width="18" height="24"></rect><rect x="322" y="420" width="18" height="20"></rect>
-            <rect x="360" y="418" width="18" height="22"></rect><rect x="398" y="422" width="18" height="18"></rect>
-          </g>
-          <g fill="none" stroke="#C29B4E" stroke-opacity=".6" stroke-dasharray="4 5">
-            <rect x="436" y="410" width="18" height="30"></rect><rect x="474" y="388" width="18" height="52"></rect><rect x="512" y="418" width="18" height="22"></rect>
-            <rect x="550" y="402" width="18" height="38"></rect><rect x="588" y="378" width="18" height="62"></rect><rect x="626" y="414" width="18" height="26"></rect>
-            <rect x="664" y="400" width="18" height="40"></rect><rect x="702" y="392" width="18" height="48"></rect><rect x="740" y="396" width="18" height="44"></rect>
-          </g>
-        </svg>
-        <figcaption>We're still in Phase B, building the cause. The mark-up comes next.</figcaption>
-      </figure>
-    </section>
-
-    <section class="coming" aria-label="What's coming">
-      <article>
-        <small>MASTER WYCKOFF</small>
-        <h2>Lessons, step by step</h2>
-        <p>The three laws, the Composite Man and every phase of accumulation and distribution, in short lessons.</p>
-      </article>
-      <article>
-        <small>WYCKOFF IN ACTION</small>
-        <h2>Real charts, every trading day</h2>
-        <p>Springs on S&amp;P 500 stocks, marked up phase by phase, with the full trade plan and its risk.</p>
-      </article>
-      <article>
-        <small>THE SCORECARD</small>
-        <h2>Every trade reviewed</h2>
-        <p>Wins and losses tracked in the open, so you can judge the method on results, not promises.</p>
-      </article>
-    </section>
-  </main>
-
-  <footer>
-    <p>Wyckademy is educational content only. Nothing here is investment, financial or trading advice. Trading involves risk of loss.</p>
-    <span><a href="https://www.youtube.com/@Wyckademyofficial" style="color:inherit">YouTube</a> · <a href="/privacy/" style="color:inherit">Privacy policy</a> · <a href="/terms/" style="color:inherit">Terms</a> · © 2026 Wyckademy · wyckademy.com</span>
-  </footer>
+<aside aria-label="Trade plan" style="flex: 1 1 340px; background: #FFFFFF; color: #0E1B2C; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px">
+<div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 30px; font-weight: 700; line-height: 1">HAL</div>
+<div style="font-size: 13px; color: #4F5D6E; margin-top: 4px">Energy · score 57.9</div>
+</div>
+<span style="background: #E7F3EC; color: #1E6B43; font-size: 12px; font-weight: 700; padding: 6px 10px; border-radius: 20px; letter-spacing: .04em">PAPER TRADE · PLAN SET BEFORE THE OPEN</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: #DCE2E9; border: 1px solid #DCE2E9; border-radius: 10px; overflow: hidden">
+<div style="background: #FFFFFF; padding: 12px"><div style="font-size: 11px; letter-spacing: .08em; color: #4F5D6E">ENTRY</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600; margin-top: 4px">~33.78</div><div style="font-size: 12px; color: #4F5D6E">Mon 16 Nov open</div></div>
+<div style="background: #FFFFFF; padding: 12px"><div style="font-size: 11px; letter-spacing: .08em; color: #4F5D6E">STOP</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600; margin-top: 4px; color: #B3261E">30.87</div><div style="font-size: 12px; color: #4F5D6E">0.25 ATR under spring</div></div>
+<div style="background: #FFFFFF; padding: 12px"><div style="font-size: 11px; letter-spacing: .08em; color: #4F5D6E">SIZE</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600; margin-top: 4px">51 sh</div><div style="font-size: 12px; color: #4F5D6E">max loss ~148</div></div>
+<div style="background: #FFFFFF; padding: 12px"><div style="font-size: 11px; letter-spacing: .08em; color: #4F5D6E">EXIT</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600; margin-top: 4px">Day 6</div><div style="font-size: 12px; color: #4F5D6E">close of Mon 23 Nov</div></div>
+</div>
+<div style="font-size: 14px; line-height: 1.55; background: #F5F7FA; border-radius: 10px; padding: 14px"><b>If / then.</b> If price holds above the spring low (31.14), expect a test, then a sign of strength toward 38. A close under 30.87 ends the trade.</div>
+<a href="https://www.youtube.com/channel/UC4YRM41OV3Z-UfDPH4TxxvA" rel="noopener" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 10px; background: #0E1B2C; color: #FFFFFF; text-decoration: none; padding: 14px; border-radius: 10px; font-weight: 600; font-size: 15px">
+<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#C9A24D" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M10 8l6 4-6 4z" fill="#C9A24D"></path></svg>Watch the 60-second breakdown</a>
+<a href="/lesson/" style="font-size: 14px; font-weight: 600; color: #2457C5; text-decoration: none">New to springs? Learn what a spring is →</a>
+</aside>
 </div>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <g id="crest">
-      <path d="M12 8 H188 V118 C188 178 146 213 100 232 C54 213 12 178 12 118 Z" fill="#13233F" stroke="#F5F0E6" stroke-width="3"></path>
-      <path d="M12 8 H188 V118 C188 178 146 213 100 232 C54 213 12 178 12 118 Z" fill="none" stroke="#C29B4E" stroke-width="5"></path>
-      <rect x="19" y="15" width="162" height="54" fill="#C29B4E"></rect>
-      <path d="M100 32 C88 25 70 25 56 30 V58 C70 53 88 53 100 60 Z" fill="#13233F"></path>
-      <path d="M100 32 C112 25 130 25 144 30 V58 C130 53 112 53 100 60 Z" fill="#13233F"></path>
-      <path d="M64 37 C74 34 84 34 93 37 M64 44 C74 41 84 41 93 44 M64 51 C74 48 84 48 93 51 M107 37 C116 34 126 34 136 37 M107 44 C116 41 126 41 136 44 M107 51 C116 48 126 48 136 51" fill="none" stroke="#C29B4E" stroke-width="1.6"></path>
-      <path d="M19 118 V75 H181 V118 C181 174 142 206 100 224 C58 206 19 174 19 118 Z" fill="none" stroke="#C29B4E" stroke-width="1.2"></path>
-      <line x1="30" y1="104" x2="172" y2="104" stroke="#C29B4E" stroke-width="1" stroke-dasharray="3 3" opacity=".7"></line>
-      <line x1="30" y1="140" x2="172" y2="140" stroke="#C29B4E" stroke-width="1" stroke-dasharray="3 3" opacity=".7"></line>
-      <polyline points="32,86 48,140 62,104 78,138 94,108 106,152 118,128 132,100 142,113 157,88" fill="none" stroke="#C29B4E" stroke-width="6" stroke-linejoin="miter"></polyline>
-      <path d="M165 74 L148 84 L165 94 Z" fill="#C29B4E"></path>
-      <rect x="70" y="182" width="8" height="12" fill="#C29B4E"></rect><rect x="83" y="174" width="8" height="20" fill="#C29B4E"></rect>
-      <rect x="96" y="184" width="8" height="10" fill="#C29B4E"></rect><rect x="109" y="168" width="8" height="26" fill="#C29B4E"></rect>
-      <rect x="122" y="178" width="8" height="16" fill="#C29B4E"></rect>
-    </g>
-  </defs>
-</svg>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+
+<div style="border: 1px solid #22344C; border-radius: 10px; padding: 14px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; color: #FFFFFF">−25%</div>
+<div style="font-size: 12px; color: #9FB0C4; margin-top: 4px; line-height: 1.4">mark-down before the climax</div>
+</div>
+
+<div style="border: 1px solid #22344C; border-radius: 10px; padding: 14px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; color: #FFFFFF">3.1×</div>
+<div style="font-size: 12px; color: #9FB0C4; margin-top: 4px; line-height: 1.4">normal volume on the selling climax, 21 Jul</div>
+</div>
+
+<div style="border: 1px solid #22344C; border-radius: 10px; padding: 14px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; color: #FFFFFF">78 days</div>
+<div style="font-size: 12px; color: #9FB0C4; margin-top: 4px; line-height: 1.4">building cause inside the range</div>
+</div>
+
+<div style="border: 1px solid #22344C; border-radius: 10px; padding: 14px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; color: #FFFFFF">−13%</div>
+<div style="font-size: 12px; color: #9FB0C4; margin-top: 4px; line-height: 1.4">Phase B volume vs Phase A: supply drying up</div>
+</div>
+
+<div style="border: 1px solid #22344C; border-radius: 10px; padding: 14px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; color: #FFFFFF">31.14</div>
+<div style="font-size: 12px; color: #9FB0C4; margin-top: 4px; line-height: 1.4">spring low under 31.26 support, closed back inside on 9 Nov</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<main style="max-width: 1200px; margin: 0 auto; padding: 56px 24px 0; display: flex; flex-direction: column; gap: 64px">
+
+<section id="scorecard" aria-labelledby="sc" style="display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+<div>
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .12em; color: #8A6A1F">THE SCORECARD</div>
+<h2 id="sc" style="margin: 6px 0 0; font-family: 'Space Grotesk', sans-serif; font-size: 36px; letter-spacing: -.01em">Every call tracked. Win or lose.</h2>
+</div>
+<p style="margin: 0; max-width: 420px; color: #4F5D6E; font-size: 15px; line-height: 1.5">A 20,000 paper fund follows every trade of the day with real prices, exactly as published. Started 16 Nov 2026.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCE2E9; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px">
+<span style="font-size: 14px; font-weight: 600">Trial day 1 of 30</span>
+<div style="flex: 1 1 300px; height: 8px; background: #E8EDF3; border-radius: 4px"><div style="width: 3.3%; height: 8px; background: #C9A24D; border-radius: 4px"></div></div>
+<span style="font-size: 13px; color: #4F5D6E">Judge after 30+ closed trades</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px">
+
+<div style="border: 1px solid #DCE2E9; border-radius: 12px; padding: 16px">
+<div style="font-size: 11px; letter-spacing: .1em; color: #4F5D6E">ACCOUNT VALUE</div>
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 30px; font-weight: 600; margin-top: 6px">20,000</div>
+<div style="font-size: 12px; color: #4F5D6E; margin-top: 4px">+0.00% on 20,000</div>
+</div>
+
+<div style="border: 1px solid #DCE2E9; border-radius: 12px; padding: 16px">
+<div style="font-size: 11px; letter-spacing: .1em; color: #4F5D6E">WIN RATIO</div>
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 30px; font-weight: 600; margin-top: 6px">–</div>
+<div style="font-size: 12px; color: #4F5D6E; margin-top: 4px">back-test 54%</div>
+</div>
+
+<div style="border: 1px solid #DCE2E9; border-radius: 12px; padding: 16px">
+<div style="font-size: 11px; letter-spacing: .1em; color: #4F5D6E">AVERAGE RESULT</div>
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 30px; font-weight: 600; margin-top: 6px">– R</div>
+<div style="font-size: 12px; color: #4F5D6E; margin-top: 4px">back-test +0.51 R</div>
+</div>
+
+<div style="border: 1px solid #DCE2E9; border-radius: 12px; padding: 16px">
+<div style="font-size: 11px; letter-spacing: .1em; color: #4F5D6E">MAX DRAWDOWN</div>
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 30px; font-weight: 600; margin-top: 6px">0</div>
+<div style="font-size: 12px; color: #4F5D6E; margin-top: 4px">back-test up to 1,372</div>
+</div>
+
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 20px">
+<div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<div style="font-size: 13px; font-weight: 600">Live vs 3-year back-test of the same rules</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; font-size: 13px"><span>Win ratio</span><span style="font-family: 'IBM Plex Mono', monospace"><b>–</b> <span style="color: #4F5D6E">vs 54%</span></span></div>
+<div style="height: 6px; background: #E8EDF3; border-radius: 3px"><div style="width: 54%; height: 6px; background: #AEB9C6; border-radius: 3px"></div></div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; font-size: 13px"><span>Risk to reward</span><span style="font-family: 'IBM Plex Mono', monospace"><b>–</b> <span style="color: #4F5D6E">vs 1.87</span></span></div>
+<div style="height: 6px; background: #E8EDF3; border-radius: 3px"><div style="width: 62%; height: 6px; background: #AEB9C6; border-radius: 3px"></div></div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; font-size: 13px"><span>Profit factor</span><span style="font-family: 'IBM Plex Mono', monospace"><b>–</b> <span style="color: #4F5D6E">vs 2.24</span></span></div>
+<div style="height: 6px; background: #E8EDF3; border-radius: 3px"><div style="width: 75%; height: 6px; background: #AEB9C6; border-radius: 3px"></div></div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; font-size: 13px"><span>Average profit per trade</span><span style="font-family: 'IBM Plex Mono', monospace"><b>–</b> <span style="color: #4F5D6E">vs +65</span></span></div>
+<div style="height: 6px; background: #E8EDF3; border-radius: 3px"><div style="width: 43%; height: 6px; background: #AEB9C6; border-radius: 3px"></div></div>
+</div>
+
+<div style="font-size: 12px; color: #4F5D6E">Live bars fill in as trades close. Grey = back-test.</div>
+</div>
+<div style="flex: 1 1 300px; background: #F5F7FA; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 13px; font-weight: 600">Where the money is</div>
+<div style="height: 14px; background: #DCE5EF; border-radius: 7px"></div>
+<div style="display: flex; justify-content: space-between; font-size: 13px"><span>In trades <b style="font-family: 'IBM Plex Mono', monospace">0</b></span><span>Cash <b style="font-family: 'IBM Plex Mono', monospace">20,000</b></span></div>
+<div style="font-size: 13px; color: #4F5D6E; line-height: 1.5">No open positions. Cash waits for the next strict spring.</div>
+<a href="/trades/" style="font-size: 14px; font-weight: 600; color: #2457C5; text-decoration: none">See every trade →</a>
+</div>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="learn" style="display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+<div>
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .12em; color: #8A6A1F">WYCKOFF BASICS</div>
+<h2 id="learn" style="margin: 6px 0 0; font-family: 'Space Grotesk', sans-serif; font-size: 36px; letter-spacing: -.01em">Learn to read the chart yourself.</h2>
+</div>
+<a href="/basics/" style="font-size: 15px; font-weight: 600; color: #2457C5; text-decoration: none">All 8 lessons →</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+
+<a href="/lesson/" style="text-decoration: none; color: #0E1B2C; background: #FFFFFF; border: 1px solid #DCE2E9; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 150px; background: #0E1B2C; position: relative; display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 64px; font-weight: 700; color: #C9A24D; line-height: .8">01</span>
+<span style="position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,.12); color: #FFFFFF; font-size: 11px; padding: 4px 8px; border-radius: 12px">▶ YouTube</span>
+</div>
+<div style="padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px">
+<b style="font-size: 16px">What Wyckoff is</b>
+<span style="font-size: 13px; color: #4F5D6E; line-height: 1.45">Structure over indicators, and why volume is the footprint.</span>
+</div>
+</a>
+
+<a href="/lesson/" style="text-decoration: none; color: #0E1B2C; background: #FFFFFF; border: 1px solid #DCE2E9; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 150px; background: #0E1B2C; position: relative; display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 64px; font-weight: 700; color: #C9A24D; line-height: .8">02</span>
+<span style="position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,.12); color: #FFFFFF; font-size: 11px; padding: 4px 8px; border-radius: 12px">▶ YouTube</span>
+</div>
+<div style="padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px">
+<b style="font-size: 16px">The Composite Man</b>
+<span style="font-size: 13px; color: #4F5D6E; line-height: 1.45">Think like the operator who buys the panic.</span>
+</div>
+</a>
+
+<a href="/lesson/" style="text-decoration: none; color: #0E1B2C; background: #FFFFFF; border: 1px solid #DCE2E9; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 150px; background: #0E1B2C; position: relative; display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 64px; font-weight: 700; color: #C9A24D; line-height: .8">03</span>
+<span style="position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,.12); color: #FFFFFF; font-size: 11px; padding: 4px 8px; border-radius: 12px">▶ YouTube</span>
+</div>
+<div style="padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px">
+<b style="font-size: 16px">The three laws</b>
+<span style="font-size: 13px; color: #4F5D6E; line-height: 1.45">Supply &amp; demand, cause &amp; effect, effort vs result.</span>
+</div>
+</a>
+
+<a href="/lesson/" style="text-decoration: none; color: #0E1B2C; background: #FFFFFF; border: 1px solid #DCE2E9; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 150px; background: #0E1B2C; position: relative; display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 64px; font-weight: 700; color: #C9A24D; line-height: .8">04</span>
+<span style="position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,.12); color: #FFFFFF; font-size: 11px; padding: 4px 8px; border-radius: 12px">▶ YouTube</span>
+</div>
+<div style="padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px">
+<b style="font-size: 16px">Accumulation A–E</b>
+<span style="font-size: 13px; color: #4F5D6E; line-height: 1.45">The schematic, phase by phase, on a real chart.</span>
+</div>
+</a>
+
+</div>
+</section>
+
+<section aria-labelledby="recent" style="display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+<div>
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .12em; color: #8A6A1F">HISTORICAL TRADES</div>
+<h2 id="recent" style="margin: 6px 0 0; font-family: 'Space Grotesk', sans-serif; font-size: 36px; letter-spacing: -.01em">The plan before. The result after.</h2>
+</div>
+<a href="/trades/" style="font-size: 15px; font-weight: 600; color: #2457C5; text-decoration: none">All trades →</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+<a href="/trades/hal-2026-11-13/" style="text-decoration: none; color: #0E1B2C; background: #FFFFFF; border: 1px solid #DCE2E9; border-radius: 14px; overflow: hidden">
+<img src="/assets/hal_thumb.png" alt="HAL chart thumbnail" style="width: 100%; height: 170px; object-fit: cover; display: block">
+<div style="padding: 14px 16px; display: flex; justify-content: space-between; align-items: center">
+<div><b style="font-family: 'Space Grotesk', sans-serif; font-size: 18px">HAL</b><div style="font-size: 12px; color: #4F5D6E">Spring · scan 13 Nov 2026</div></div>
+<span style="background: #E8EFFB; color: #1F4FB0; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 14px">IN PROGRESS</span>
+</div>
+</a>
+<div style="border: 1.5px dashed #C4CDD8; border-radius: 14px; display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center; color: #4F5D6E; font-size: 14px; line-height: 1.5; min-height: 230px">The next case file lands here when a trade closes: plan, result and video.</div>
+<div style="border: 1.5px dashed #C4CDD8; border-radius: 14px; display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center; color: #4F5D6E; font-size: 14px; line-height: 1.5; min-height: 230px">Losses are published the same way as wins.</div>
+</div>
+</section>
+
+<section id="signup" aria-labelledby="su" style="background: #0E1B2C; color: #FFFFFF; border-radius: 18px; padding: 40px; display: flex; flex-wrap: wrap; gap: 28px; align-items: center">
+<div style="flex: 999 1 440px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .12em; color: #C9A24D">FREE · AFTER EVERY US CLOSE</div>
+<h2 id="su" style="margin: 8px 0 8px; font-family: 'Space Grotesk', sans-serif; font-size: 34px; letter-spacing: -.01em">Follow the trade of the day.</h2>
+<p style="margin: 0; color: #C3CEDB; font-size: 16px; line-height: 1.5">Tom's pick with the chart, the plan and the result, posted on YouTube, Instagram and TikTok after every US close. Every trade is reviewed in public, win or lose. Email updates are coming soon.</p>
+</div>
+<div style="flex: 1 1 360px; display: flex; flex-wrap: wrap; gap: 10px"><a href="https://www.youtube.com/channel/UC4YRM41OV3Z-UfDPH4TxxvA" rel="noopener" target="_blank" style="flex: 1 1 150px; text-align: center; background: #C9A24D; color: #0E1B2C; border-radius: 10px; padding: 15px 18px; font-weight: 700; font-size: 16px; text-decoration: none">YouTube</a><a href="https://www.instagram.com/wyckademyhq/" rel="noopener" target="_blank" style="flex: 1 1 150px; text-align: center; background: #16263B; color: #FFFFFF; border-radius: 10px; padding: 15px 18px; font-weight: 700; font-size: 16px; text-decoration: none">Instagram</a><a href="https://www.tiktok.com/@wyckademyhq" rel="noopener" target="_blank" style="flex: 1 1 150px; text-align: center; background: #16263B; color: #FFFFFF; border-radius: 10px; padding: 15px 18px; font-weight: 700; font-size: 16px; text-decoration: none">TikTok</a></div>
+</section>
+</main>
+
+<footer style="margin-top: 64px; background: #FFFFFF; border-top: 1px solid #DCE2E9">
+<div style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: flex-start; font-size: 13px; color: #4F5D6E">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: .14em; color: #0E1B2C">WYCKADEMY</span>
+<div style="display: flex; flex-wrap: wrap; gap: 18px"><a href="https://www.youtube.com/channel/UC4YRM41OV3Z-UfDPH4TxxvA" rel="noopener" target="_blank">YouTube</a><a href="https://www.instagram.com/wyckademyhq/" rel="noopener" target="_blank">Instagram</a><a href="https://www.tiktok.com/@wyckademyhq" rel="noopener" target="_blank">TikTok</a><a href="/basics/">About the method</a><a href="/privacy/">Privacy policy</a><a href="/terms/">Terms</a><a href="mailto:trade@wyckademy.com">trade@wyckademy.com</a></div>
+</div>
+<p style="margin: 0; max-width: 520px; line-height: 1.55">Education only. Not investment advice or a recommendation to buy or sell any security. Results are paper trades, published in full. Wyckoff analysis is probabilistic: setups fail, and past results do not predict future returns.</p>
+</div>
+</footer>
+</div>
 </body>
 </html>
