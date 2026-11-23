@@ -1,0 +1,49 @@
+/* Wyckademy phone layout. The pages use inline styles, so these rules target
+   the inline grid patterns and override them on small screens. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+img,video,svg,iframe{max-width:100%}
+
+@media (max-width:860px){
+  /* 4- and 5-column rows (stats, scorecard tiles, lesson cards) -> 2 columns */
+  [style*="repeat(4, minmax(0, 1fr))"],
+  [style*="repeat(5, minmax(0, 1fr))"]{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  /* 3-column rows (trade cards) -> 1 column */
+  [style*="repeat(3, minmax(0, 1fr))"]{grid-template-columns:minmax(0,1fr) !important}
+  /* auto-fill cards never wider than the screen */
+  [style*="minmax(340px, 1fr)"]{grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr)) !important}
+}
+
+@media (max-width:600px){
+  /* 2-column rows -> stacked */
+  [style*="repeat(2, minmax(0, 1fr))"]{grid-template-columns:minmax(0,1fr) !important}
+}
+
+@media (max-width:860px){
+  /* odd tile left over in a 2-column row spans the full width */
+  [style*="repeat(5, minmax(0, 1fr))"] > :last-child:nth-child(odd){grid-column:1 / -1}
+}
+@media (max-width:600px){
+  /* empty "next case file" placeholders don't need to be so tall once stacked */
+  [style*="min-height: 230px"]{min-height:110px !important}
+}
+
+/* Historical trades table -> one card per trade on phones */
+@media (max-width:700px){
+  table[style*="min-width: 820px"]{min-width:0 !important}
+  table[style*="min-width: 820px"] thead{display:none}
+  table[style*="min-width: 820px"] tbody tr{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;padding:14px 4px;border-bottom:1px solid #DCE2E9}
+  table[style*="min-width: 820px"] tbody tr:last-child{border-bottom:0}
+  table[style*="min-width: 820px"] td{display:block;padding:6px 12px !important;border:0 !important;text-align:left !important}
+  table[style*="min-width: 820px"] td::before{display:block;font:600 11px/1.4 Inter,Arial,sans-serif;letter-spacing:.12em;color:#4F5D6E;margin-bottom:2px}
+  table[style*="min-width: 820px"] td:nth-child(1)::before{content:"SIGNAL"}
+  table[style*="min-width: 820px"] td:nth-child(2)::before{content:"TICKER"}
+  table[style*="min-width: 820px"] td:nth-child(3){grid-column:1 / -1}
+  table[style*="min-width: 820px"] td:nth-child(3)::before{content:none}
+  table[style*="min-width: 820px"] td:nth-child(3) img{width:100% !important;height:auto !important;max-height:none !important}
+  table[style*="min-width: 820px"] td:nth-child(4){grid-column:1 / -1}
+  table[style*="min-width: 820px"] td:nth-child(4)::before{content:"STATUS"}
+  table[style*="min-width: 820px"] td:nth-child(5)::before{content:"R"}
+  table[style*="min-width: 820px"] td:nth-child(6)::before{content:"P/L"}
+  table[style*="min-width: 820px"] td:nth-child(7){grid-column:1 / -1}
+  table[style*="min-width: 820px"] td:nth-child(7)::before{content:none}
+}
